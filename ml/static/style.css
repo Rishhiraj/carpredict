@@ -1,0 +1,161 @@
+body {
+    animation: gradientShift 10s infinite linear;
+    background-size: 400% 400%;
+    background-image: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/* Increase the size of form elements */
+input, select, button {
+    width: 300px;
+    height: 40px;
+}
+/* Round the edges of form elements */
+input, select, button {
+    border-radius: 10px;
+}
+
+/* Round the edges of content containers */
+.container, .content {
+    border-radius: 10px;
+}
+.content {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+/* Add space between form elements */
+form div {
+    margin-bottom: 10px;
+}
+
+/* Increase the size of form elements */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Style the button */
+button {
+    width: 100%;
+    padding: 10px;
+}
+form {
+    text-align: left; /* Reset text alignment */
+}
+
+input, select, button {
+    width: 100%;
+}
+
+
+.stars {
+    background: url('{{ url_for('static', filename='stars.jpg') }}');
+    animation: animate 30s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 10000px 10000px; /* Adjust values for animation speed */
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#predictionResult {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.ball-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FFD700; /* Color of the ball */
+    border-radius: 50%; /* Make it a circle */
+    animation: bounce 2s linear infinite;
+}
+
+.ball-1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.ball-2 {
+    left: 30%;
+    animation-delay: 0.2s;
+}
+
+/* Add more ball classes and adjust their positions and delays as needed */
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(100px); /* Adjust the height of the bounce */
+    }
+}
+

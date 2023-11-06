@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Learning Model Web App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+ <div class="container">
+        <div class="content">
+            <h1>Machine Learning Model Web App</h1>
+            <p>Enter data and get predictions:</p>
+            <form id="mlForm">
+                <div class="input-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" placeholder="Enter age..." min="0">
+                </div>
+                <div class="input-group">
+                    <label for="annualIncome">Annual Income:</label>
+                    <input type="number" id="annualIncome" name="annualIncome" placeholder="Enter annual income..." min="0">
+                </div>
+                <button type="button" id="predictButton">Get Prediction</button>
+            </form>
+            <div id="predictionResult"></div>
+        </div>
+    </div>
+    <script>
+        // JavaScript for making the prediction request and updating the page
+        const predictButton = document.getElementById('predictButton');
+        const predictionResult = document.getElementById('predictionResult');
+        const mlForm = document.getElementById('mlForm');
+
+        predictButton.addEventListener('click', () => {
+            const gender = document.getElementById('gender').value;
+            const age = document.getElementById('age').value;
+            const annualIncome = document.getElementById('annualIncome').value;
+
+            const data = {
+                "gender": gender,
+                "age": age,
+                "annualIncome": annualIncome
+            };
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    predictionResult.innerHTML = `<p class="error">${data.error}</p>`;
+                } else {
+                    predictionResult.innerHTML = `<p>Prediction: ${data.prediction === 1 ? 'Purchased' : 'Not Purchased'}</p>`;
+                }
+            })
+            .catch(error => {
+                predictionResult.innerHTML = `<p class="error">An error occurred: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
